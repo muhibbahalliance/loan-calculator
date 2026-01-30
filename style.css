@@ -6,7 +6,6 @@ body {
 
 h1 {
   text-align: center;
-  margin-bottom: 5px;
 }
 
 .subtitle {
@@ -29,12 +28,10 @@ label {
   font-weight: bold;
 }
 
-input,
-select {
+input, select {
   width: 100%;
   padding: 8px;
   margin-top: 4px;
-  box-sizing: border-box;
 }
 
 button {
@@ -46,15 +43,10 @@ button {
   border: none;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 4px;
-}
-
-button:hover {
-  background: #004a8a;
 }
 
 .result {
-  margin-top: 25px;
+  margin-top: 20px;
   background: #eef5ff;
   padding: 15px;
   border-radius: 6px;
@@ -63,12 +55,11 @@ button:hover {
 .summary-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
 }
 
 .summary-table td {
   padding: 6px;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #ddd;
   font-size: 14px;
 }
 
@@ -78,7 +69,7 @@ button:hover {
 }
 
 .cash-title {
-  margin-top: 18px;
+  margin-top: 15px;
   text-align: center;
 }
 
