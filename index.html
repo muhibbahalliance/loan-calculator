@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <title>Kalkulator Pinjaman Penjawat Awam</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<div class="form">
+  <label>Tarikh Lahir</label>
+  <input type="date" id="dob" />
 
-<h1>Kalkulator Pinjaman Penjawat Awam</h1>
-<p class="subtitle">
-Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
-</p>
+  <label>Gaji Pokok (RM)</label>
+  <input type="number" id="basic" placeholder="Contoh: 3500" />
 
-<div class="card">
+  <label>Elaun Tetap (RM)</label>
+  <input type="number" id="allowance" placeholder="Contoh: 500" />
 
-  <!-- MAKLUMAT PENDAPATAN -->
-  <label>Gaji Pokok + Elaun Tetap (RM)</label>
-  <in
+  <label>Potongan Sedia Ada (RM)</label>
+  <input type="number" id="commitment" placeholder="Contoh: 800" />
+
+  <label>Potongan Dalam Proses (RM)</label>
+  <input type="number" id="inTransit" placeholder="Contoh: 200" />
+
+  <label>Tempoh Pembiayaan (Tahun) – Optional</label>
+  <input type="number" id="tenure" placeholder="Contoh: 10" />
+
+  <button onclick="calculate()">Kira Kelayakan</button>
+</div>
