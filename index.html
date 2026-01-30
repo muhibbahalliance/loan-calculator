@@ -43,18 +43,46 @@ Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
 
   <button onclick="calculate()">Kira</button>
 
-  <div class="result">
-    <h2>DAPAT TANGAN</h2>
-    <p id="cash">RM 0.00</p>
-    <p id="status"></p>
-  </div>
+ <div class="result">
+  <h2>Keputusan Pengiraan</h2>
 
+  <table class="summary-table">
+    <tr>
+      <td>Ansuran Bulanan</td>
+      <td id="monthly">RM 0.00</td>
+    </tr>
+    <tr>
+      <td>Jumlah Pinjaman</td>
+      <td id="sumLoan">RM 0.00</td>
+    </tr>
+    <tr>
+      <td>Jumlah Faedah</td>
+      <td id="sumInterest">RM 0.00</td>
+    </tr>
+    <tr>
+      <td>Jumlah Bayaran Keseluruhan</td>
+      <td id="sumPayable">RM 0.00</td>
+    </tr>
+    <tr>
+      <td>Payout (80%)</td>
+      <td id="sumPayout">RM 0.00</td>
+    </tr>
+    <tr>
+      <td>Settlement Overlap</td>
+      <td id="sumOverlap">RM 0.00</td>
+    </tr>
+    <tr>
+      <td>Jumlah Caj</td>
+      <td id="sumFees">RM 0.00</td>
+    </tr>
+    <tr>
+      <td>Advance Installment</td>
+      <td id="sumAdvance">RM 0.00</td>
+    </tr>
+  </table>
+
+  <h3 class="cash-title">DAPAT TANGAN</h3>
+  <p id="cash" class="cash-amount">RM 0.00</p>
+
+  <p id="status"></p>
 </div>
-
-<p class="disclaimer">
-Penafian: Pengiraan ini adalah anggaran sahaja dan tertakluk kepada kelulusan.
-</p>
-
-<script src="script.js"></script>
-</body>
-</html>
