@@ -1,8 +1,6 @@
 function calculate() {
 
-  // =====================
   // 1. USER INPUTS
-  // =====================
   const salary = Number(document.getElementById("salary").value || 0);
   const deduction = Number(document.getElementById("deduction").value || 0);
   const loan = Number(document.getElementById("loan").value || 0);
@@ -14,40 +12,25 @@ function calculate() {
   const fees = Number(document.getElementById("fees").value || 0);
   const advance = Number(document.getElementById("advance").value || 0);
 
-  // =====================
-  // 2. PRODUCT SETTINGS (FROM EXCEL)
-  // =====================
-  const INTEREST_RATE = 0.0665;   // 6.65% flat
+  // 2. PRODUCT SETTINGS (COSHARE)
+  const INTEREST_RATE = 0.0665;   // 6.65% flat p.a
   const PAYOUT_RATE = 0.80;       // 80%
   const MAX_DEDUCTION_RATE = 0.60;
 
-  // =====================
-  // 3. MONTHLY INSTALLMENT (FLAT)
-  // Excel logic:
-  // (Loan + (Loan × Rate × Years)) / (Years × 12)
-  // =====================
+  // 3. MONTHLY INSTALLMENT (FLAT RATE)
   const totalInterest = loan * INTEREST_RATE * tenure;
   const totalPayable = loan + totalInterest;
   const monthlyInstallment = totalPayable / (tenure * 12);
 
-  // =====================
-  // 4. ELIGIBILITY (EXCEL STYLE)
-  // =====================
+  // 4. ELIGIBILITY CHECK
   const maxAllowedDeduction = salary * MAX_DEDUCTION_RATE;
   const availableForLoan = maxAllowedDeduction - deduction;
-
   const isEligible = monthlyInstallment <= availableForLoan;
 
-  // =====================
-  // 5. OVERLAP LOGIC
-  // =====================
+  // 5. OVERLAP
   const settlement = hasOverlap === "yes" ? overlapAmount : 0;
 
-  // =====================
-  // 6. CASH IN HAND (DAPAT TANGAN)
-  // Excel:
-  // (Loan × Payout) – Settlement – Fees – Advance
-  // =====================
+  // 6. CASH IN HAND
   const grossPayout = loan * PAYOUT_RATE;
   const cashInHand =
     grossPayout -
@@ -55,9 +38,7 @@ function calculate() {
     fees -
     advance;
 
-  // =====================
-  // 7. DISPLAY RESULTS
-  // =====================
+  // 7. DISPLAY RESULT
   document.getElementById("cash").innerText =
     "RM " + cashInHand.toFixed(2);
 
