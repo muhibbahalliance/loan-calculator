@@ -1,26 +1,60 @@
-<label>Gaji Pokok + Elaun Tetap (RM)</label>
-<input type="number" id="salary">
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Pinjaman Penjawat Awam</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<label>Jumlah Potongan Sedia Ada (RM)</label>
-<input type="number" id="deduction">
+<h1>Kalkulator Pinjaman Penjawat Awam</h1>
+<p class="subtitle">
+Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
+</p>
 
-<label>Jumlah Pinjaman (RM)</label>
-<input type="number" id="loan">
+<div class="card">
 
-<label>Tempoh (Tahun)</label>
-<input type="number" id="tenure">
+  <label>Gaji Pokok + Elaun Tetap (RM)</label>
+  <input type="number" id="salary">
 
-<label>Ada Overlap Loan?</label>
-<select id="hasOverlap">
-  <option value="no">Tidak</option>
-  <option value="yes">Ya</option>
-</select>
+  <label>Jumlah Potongan Sedia Ada (RM)</label>
+  <input type="number" id="deduction">
 
-<label>Jumlah Baki Hutang (RM)</label>
-<input type="number" id="overlapAmount" value="0">
+  <label>Jumlah Pinjaman (RM)</label>
+  <input type="number" id="loan" value="50000">
 
-<label>Jumlah Caj (Takaful, Admin, Stamp, dll) (RM)</label>
-<input type="number" id="fees" value="0">
+  <label>Tempoh Pembiayaan (Tahun)</label>
+  <input type="number" id="tenure" value="15">
 
-<label>Advance Installment (RM)</label>
-<input type="number" id="advance" value="0">
+  <label>Ada Overlap Loan?</label>
+  <select id="hasOverlap">
+    <option value="no">Tidak</option>
+    <option value="yes">Ya</option>
+  </select>
+
+  <label>Jumlah Baki Hutang Overlap (RM)</label>
+  <input type="number" id="overlapAmount" value="0">
+
+  <label>Jumlah Caj (Takaful, Admin, Stamp, dll) (RM)</label>
+  <input type="number" id="fees" value="0">
+
+  <label>Advance Installment (RM)</label>
+  <input type="number" id="advance" value="0">
+
+  <button onclick="calculate()">Kira</button>
+
+  <div class="result">
+    <h2>DAPAT TANGAN</h2>
+    <p id="cash">RM 0.00</p>
+    <p id="status"></p>
+  </div>
+
+</div>
+
+<p class="disclaimer">
+Penafian: Pengiraan ini adalah anggaran sahaja dan tertakluk kepada kelulusan.
+</p>
+
+<script src="script.js"></script>
+</body>
+</html>
