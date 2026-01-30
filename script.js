@@ -1,53 +1,81 @@
-function calculate() {
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Pinjaman Penjawat Awam</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  // INPUTS
-  const salary = Number(document.getElementById("salary").value || 0);
-  const deduction = Number(document.getElementById("deduction").value || 0);
-  const loan = Number(document.getElementById("loan").value || 0);
-  const tenure = Number(document.getElementById("tenure").value || 0);
+<h1>Kalkulator Pinjaman Penjawat Awam</h1>
+<p class="subtitle">
+Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
+</p>
 
-  const hasOverlap = document.getElementById("hasOverlap").value;
-  const overlapAmount = Number(document.getElementById("overlapAmount").value || 0);
+<div class="card">
 
-  // CONSTANTS (EXCEL RULES)
-  const INTEREST_RATE = 0.0665;
-  const PAYOUT_RATE = 0.80;
-  const MAX_DEDUCTION_RATE = 0.60;
-  const OTHER_FEES_RATE = 0.20;
-  const ADVANCE_RATE = 0.011098;
-  const SST_RATE = 0.08;
+  <!-- PENDAPATAN -->
+  <label>Gaji Pokok + Elaun Tetap (RM)</label>
+  <input type="number" id="salary" placeholder="Contoh: 5200">
 
-  // INSTALLMENT (FLAT)
-  const totalInterest = loan * INTEREST_RATE * tenure;
-  const totalPayable = loan + totalInterest;
-  const monthlyInstallment = totalPayable / (tenure * 12);
+  <label>Jumlah Potongan Sedia Ada (RM)</label>
+  <input type="number" id="deduction" placeholder="Contoh: 2010">
 
-  // ELIGIBILITY
-  const maxAllowed = salary * MAX_DEDUCTION_RATE;
-  const available = maxAllowed - deduction;
-  const isEligible = monthlyInstallment <= available;
+  <!-- PINJAMAN -->
+  <label>Jumlah Pinjaman (RM)</label>
+  <input type="number" id="loan" value="50000">
 
-  // OVERLAP
-  const settlement = hasOverlap === "yes" ? overlapAmount : 0;
+  <label>Tempoh Pembiayaan (Tahun)</label>
+  <input type="number" id="tenure" value="15">
 
-  // AUTO FEES
-  const otherFees = loan * OTHER_FEES_RATE;
-  const sst = otherFees * SST_RATE;
-  const advance = loan * ADVANCE_RATE;
+  <!-- OVERLAP -->
+  <label>Ada Overlap Loan?</label>
+  <select id="hasOverlap">
+    <option value="no">Tidak</option>
+    <option value="yes">Ya</option>
+  </select>
 
-  const totalFees = otherFees + sst + advance;
+  <label>Jumlah Baki Hutang Overlap (RM)</label>
+  <input type="number" id="overlapAmount" value="0">
 
-  // CASH IN HAND
-  const grossPayout = loan * PAYOUT_RATE;
-  const cashInHand = grossPayout - settlement - totalFees;
+  <button onclick="calculate()">Kira</button>
 
-  // DISPLAY
-  document.getElementById("monthly").innerText = "RM " + monthlyInstallment.toFixed(2);
-  document.getElementById("sumFees").innerText = "RM " + otherFees.toFixed(2);
-  document.getElementById("sumSST").innerText = "RM " + sst.toFixed(2);
-  document.getElementById("sumAdvance").innerText = "RM " + advance.toFixed(2);
-  document.getElementById("cash").innerText = "RM " + cashInHand.toFixed(2);
+  <!-- KEPUTUSAN -->
+  <div class="result">
+    <h2>Ringkasan Pengiraan</h2>
 
-  document.getElementById("status").innerText =
-    isEligible ? "Status: LAYAK" : "Status: TIDAK LAYAK (Potongan Melebihi Had)";
-}
+    <table class="summary-table">
+      <tr>
+        <td>Ansuran Bulanan</td>
+        <td id="monthly">RM 0.00</td>
+      </tr>
+      <tr>
+        <td>Takaful, Admin, Stamp & Legal (20%)</td>
+        <td id="sumFees">RM 0.00</td>
+      </tr>
+      <tr>
+        <td>SST (8%)</td>
+        <td id="sumSST">RM 0.00</td>
+      </tr>
+      <tr>
+        <td>Advance Installment</td>
+        <td id="sumAdvance">RM 0.00</td>
+      </tr>
+    </table>
+
+    <h3 class="cash-title">DAPAT TANGAN</h3>
+    <p id="cash" class="cash-amount">RM 0.00</p>
+
+    <p id="status"></p>
+  </div>
+
+</div>
+
+<p class="disclaimer">
+Penafian: Pengiraan ini adalah anggaran sahaja dan tertakluk kepada kelulusan pihak koperasi dan majikan.
+</p>
+
+<script src="script.js"></script>
+</body>
+</html>
