@@ -39,6 +39,30 @@ function calculate() {
     advance;
 
   // 7. DISPLAY RESULT
+  document.getElementById("monthly").innerText =
+    "RM " + monthlyInstallment.toFixed(2);
+
+  document.getElementById("sumLoan").innerText =
+    "RM " + loan.toFixed(2);
+
+  document.getElementById("sumInterest").innerText =
+    "RM " + totalInterest.toFixed(2);
+
+  document.getElementById("sumPayable").innerText =
+    "RM " + totalPayable.toFixed(2);
+
+  document.getElementById("sumPayout").innerText =
+    "RM " + grossPayout.toFixed(2);
+
+  document.getElementById("sumOverlap").innerText =
+    "RM " + settlement.toFixed(2);
+
+  document.getElementById("sumFees").innerText =
+    "RM " + fees.toFixed(2);
+
+  document.getElementById("sumAdvance").innerText =
+    "RM " + advance.toFixed(2);
+
   document.getElementById("cash").innerText =
     "RM " + cashInHand.toFixed(2);
 
@@ -46,4 +70,4 @@ function calculate() {
     isEligible
       ? "Status: LAYAK"
       : "Status: TIDAK LAYAK (Potongan Melebihi Had)";
-}
+
