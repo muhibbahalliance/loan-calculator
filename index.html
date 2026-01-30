@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <title>Kalkulator Pinjaman Penjawat Awam</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<h1>Kalkulator Pinjaman Penjawat Awam</h1>
-<p class="subtitle">
-Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
-</p>
-
-<div class="card">
-
-<label>Tarikh</label>
-<input type="date" id="date">
-
-<label>Tarikh Lahir</label>
-<input type="date" id="dob">
-
 <label>Gaji Pokok + Elaun Tetap (RM)</label>
 <input type="number" id="salary">
 
@@ -27,25 +5,22 @@ Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
 <input type="number" id="deduction">
 
 <label>Jumlah Pinjaman (RM)</label>
-<input type="number" id="loan" value="50000">
+<input type="number" id="loan">
 
 <label>Tempoh (Tahun)</label>
-<input type="number" id="tenure" value="15">
+<input type="number" id="tenure">
 
-<button onclick="calculate()">Kira</button>
+<label>Ada Overlap Loan?</label>
+<select id="hasOverlap">
+  <option value="no">Tidak</option>
+  <option value="yes">Ya</option>
+</select>
 
-<div class="result">
-  <h2>DAPAT TANGAN</h2>
-  <p id="cash">RM 0.00</p>
-  <p id="status"></p>
-</div>
+<label>Jumlah Baki Hutang (RM)</label>
+<input type="number" id="overlapAmount" value="0">
 
-</div>
+<label>Jumlah Caj (Takaful, Admin, Stamp, dll) (RM)</label>
+<input type="number" id="fees" value="0">
 
-<p class="disclaimer">
-Penafian: Pengiraan ini adalah anggaran sahaja dan tertakluk kepada kelulusan.
-</p>
-
-<script src="script.js"></script>
-</body>
-</html>
+<label>Advance Installment (RM)</label>
+<input type="number" id="advance" value="0">
