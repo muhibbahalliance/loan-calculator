@@ -1,81 +1,70 @@
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <title>Kalkulator Pinjaman Penjawat Awam</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+function calculate() {
 
-<h1>Kalkulator Pinjaman Penjawat Awam</h1>
-<p class="subtitle">
-Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
-</p>
+  // ========= INPUTS =========
+  const salary = Number(document.getElementById("salary").value || 0);
+  const deduction = Number(document.getElementById("deduction").value || 0);
+  const loan = Number(document.getElementById("loan").value || 0);
+  const tenure = Number(document.getElementById("tenure").value || 0);
 
-<div class="card">
+  const hasOverlap = document.getElementById("hasOverlap").value;
+  const overlapMonthly = Number(document.getElementById("overlapMonthly").value || 0);
+  const overlapAmount = Number(document.getElementById("overlapAmount").value || 0);
 
-  <!-- PENDAPATAN -->
-  <label>Gaji Pokok + Elaun Tetap (RM)</label>
-  <input type="number" id="salary" placeholder="Contoh: 5200">
+  // ========= FIXED RULES (FROM EXCEL) =========
+  const INTEREST_RATE = 0.0665;        // 6.65% flat
+  const PAYOUT_RATE = 0.80;            // 80%
+  const MAX_DEDUCTION_RATE = 0.59;     // 59%
 
-  <label>Jumlah Potongan Sedia Ada (RM)</label>
-  <input type="number" id="deduction" placeholder="Contoh: 2010">
+  const TAKAFUL_ADMIN_FIXED = 10000;   // Fixed
+  const SST_FIXED = 500;               // Fixed
+  const ADVANCE_RATE = 0.011098;       // 1.1098%
 
-  <!-- PINJAMAN -->
-  <label>Jumlah Pinjaman (RM)</label>
-  <input type="number" id="loan" value="50000">
+  // ========= ANSURAN BULANAN =========
+  const totalInterest = loan * INTEREST_RATE * tenure;
+  const totalPayable = loan + totalInterest;
+  const monthlyInstallment = totalPayable / (tenure * 12);
 
-  <label>Tempoh Pembiayaan (Tahun)</label>
-  <input type="number" id="tenure" value="15">
+  // ========= SECTION A: KELAYAKAN =========
+  const maxAllowed = salary * MAX_DEDUCTION_RATE;
+  const available =
+    maxAllowed -
+    deduction -
+    (hasOverlap === "yes" ? overlapMonthly : 0);
 
-  <!-- OVERLAP -->
-  <label>Ada Overlap Loan?</label>
-  <select id="hasOverlap">
-    <option value="no">Tidak</option>
-    <option value="yes">Ya</option>
-  </select>
+  const isEligible = monthlyInstallment <= available;
 
-  <label>Jumlah Baki Hutang Overlap (RM)</label>
-  <input type="number" id="overlapAmount" value="0">
+  // ========= SECTION B: TUNAI BERSIH =========
+  const settlement = hasOverlap === "yes" ? overlapAmount : 0;
+  const advance = loan * ADVANCE_RATE;
 
-  <button onclick="calculate()">Kira</button>
+  const totalFees =
+    TAKAFUL_ADMIN_FIXED +
+    SST_FIXED +
+    advance;
 
-  <!-- KEPUTUSAN -->
-  <div class="result">
-    <h2>Ringkasan Pengiraan</h2>
+  const grossPayout = loan * PAYOUT_RATE;
 
-    <table class="summary-table">
-      <tr>
-        <td>Ansuran Bulanan</td>
-        <td id="monthly">RM 0.00</td>
-      </tr>
-      <tr>
-        <td>Takaful, Admin, Stamp & Legal (20%)</td>
-        <td id="sumFees">RM 0.00</td>
-      </tr>
-      <tr>
-        <td>SST (8%)</td>
-        <td id="sumSST">RM 0.00</td>
-      </tr>
-      <tr>
-        <td>Advance Installment</td>
-        <td id="sumAdvance">RM 0.00</td>
-      </tr>
-    </table>
+  const cashInHand =
+    grossPayout -
+    settlement -
+    totalFees;
 
-    <h3 class="cash-title">DAPAT TANGAN</h3>
-    <p id="cash" class="cash-amount">RM 0.00</p>
+  // ========= DISPLAY =========
+  document.getElementById("monthly").innerText =
+    "RM " + monthlyInstallment.toFixed(2);
 
-    <p id="status"></p>
-  </div>
+  document.getElementById("sumFees").innerText =
+    "RM " + TAKAFUL_ADMIN_FIXED.toFixed(2);
 
-</div>
+  document.getElementById("sumSST").innerText =
+    "RM " + SST_FIXED.toFixed(2);
 
-<p class="disclaimer">
-Penafian: Pengiraan ini adalah anggaran sahaja dan tertakluk kepada kelulusan pihak koperasi dan majikan.
-</p>
+  document.getElementById("sumAdvance").innerText =
+    "RM " + advance.toFixed(2);
 
-<script src="script.js"></script>
-</body>
-</html>
+  document.getElementById("cash").innerText =
+    "RM " + cashInHand.toFixed(2);
+
+  document.getElementById("status").innerText =
+    isEligible ? "PASS" : "FAIL";
+}
