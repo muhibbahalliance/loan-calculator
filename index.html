@@ -10,19 +10,23 @@
 
 <h1>Kalkulator Pinjaman Penjawat Awam</h1>
 <p class="subtitle">
-Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
+Pengiraan ini adalah anggaran berdasarkan jadual koperasi.
 </p>
 
 <div class="card">
 
-  <!-- PENDAPATAN -->
+  <!-- SECTION A -->
+  <h3>Maklumat Pendapatan</h3>
+
   <label>Gaji Pokok + Elaun Tetap (RM)</label>
-  <input type="number" id="salary" placeholder="Contoh: 5200">
+  <input type="number" id="salary" placeholder="Contoh: 5500">
 
   <label>Jumlah Potongan Sedia Ada (RM)</label>
   <input type="number" id="deduction" placeholder="Contoh: 2010">
 
   <!-- PINJAMAN -->
+  <h3>Maklumat Pinjaman</h3>
+
   <label>Jumlah Pinjaman (RM)</label>
   <input type="number" id="loan" value="50000">
 
@@ -30,18 +34,23 @@ Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
   <input type="number" id="tenure" value="15">
 
   <!-- OVERLAP -->
+  <h3>Maklumat Overlap</h3>
+
   <label>Ada Overlap Loan?</label>
   <select id="hasOverlap">
     <option value="no">Tidak</option>
     <option value="yes">Ya</option>
   </select>
 
+  <label>Ansuran Overlap Bulanan (RM)</label>
+  <input type="number" id="overlapMonthly" value="0" placeholder="Contoh: 100">
+
   <label>Jumlah Baki Hutang Overlap (RM)</label>
-  <input type="number" id="overlapAmount" value="0">
+  <input type="number" id="overlapAmount" value="0" placeholder="Contoh: 10000">
 
   <button onclick="calculate()">Kira</button>
 
-  <!-- KEPUTUSAN -->
+  <!-- SECTION B -->
   <div class="result">
     <h2>Ringkasan Pengiraan</h2>
 
@@ -51,11 +60,11 @@ Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
         <td id="monthly">RM 0.00</td>
       </tr>
       <tr>
-        <td>Takaful, Admin, Stamp & Legal (20%)</td>
+        <td>Takaful, Admin, Stamp & Legal</td>
         <td id="sumFees">RM 0.00</td>
       </tr>
       <tr>
-        <td>SST (8%)</td>
+        <td>SST</td>
         <td id="sumSST">RM 0.00</td>
       </tr>
       <tr>
@@ -73,7 +82,7 @@ Pengiraan ini adalah anggaran awal untuk rujukan sahaja.
 </div>
 
 <p class="disclaimer">
-Penafian: Pengiraan ini adalah anggaran sahaja dan tertakluk kepada kelulusan pihak koperasi dan majikan.
+Penafian: Keputusan ini adalah anggaran sahaja dan tertakluk kepada kelulusan pihak koperasi dan majikan.
 </p>
 
 <script src="script.js"></script>
